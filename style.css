@@ -1,0 +1,51 @@
+body {
+  font-family: Arial;
+  padding: 20px;
+  background: #111;
+  color: white;
+}
+
+div {
+  margin-bottom: 20px;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 12px;
+  padding: 6px 10px;
+  font-family: monospace;
+  border-left: 6px solid transparent;
+  margin-bottom: 6px;
+}
+
+/* 🟢 currently working */
+.active {
+  border-left-color: #00ff6a;
+  background: rgba(0, 255, 106, 0.10);
+  font-weight: bold;
+  font-size: 1.05em;
+}
+
+/* 🟡 starting soon */
+.soon {
+  border-left-color: #ffcc00;
+  background: rgba(255, 204, 0, 0.10);
+}
+
+/* ⚪ normal */
+.normal {
+  opacity: 1;
+}
+
+/* 🔴 past shift */
+.past {
+  opacity: 0.4;
+}
+
+.department {
+  font-size: 1.2em;
+  font-weight: bold;
+  margin-top: 20px;
+  margin-bottom: 8px;
+}
