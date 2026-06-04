@@ -51,6 +51,28 @@ function formatCountdown(minutes) {
     : `${h}h ${String(m).padStart(2, "0")}m`;
 }
 
+function getNextUpDayLabel(shiftDateTime, now) {
+  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  const tomorrow = new Date(today);
+  tomorrow.setDate(today.getDate() + 1);
+
+  const shiftDay = new Date(
+    shiftDateTime.getFullYear(),
+    shiftDateTime.getMonth(),
+    shiftDateTime.getDate()
+  );
+
+  if (shiftDay.getTime() === today.getTime()) {
+    return "";
+  }
+
+  if (shiftDay.getTime() === tomorrow.getTime()) {
+    return " (tomorrow)";
+  }
+
+  return ` (${shiftDateTime.toLocaleDateString("en-GB", { weekday: "long" })})`;
+}
+
 // ==========================
 // DERIVED HELPERS (logic)
 // ==========================
@@ -207,17 +229,14 @@ return `
           ? `${hours}h ${mins}m`
           : `${mins}m`;
 
-      const weekday = new Date(next.date).toLocaleDateString("en-GB", {
-        weekday: "long"
-      });
-
       const status = getShiftStatus(next);
+      const label = getNextUpDayLabel(shiftDateTime, now);
 
 nextHTML = `
   <div class="row ${status}">
     <div><strong>${next.name}</strong></div>
     <div>${next.start}</div>
-    <div>Starts in ${time} (${weekday})</div>
+    <div>Starts in ${time}${label}</div>
   </div>
 `;
     }
