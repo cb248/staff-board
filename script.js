@@ -293,3 +293,11 @@ async function loadShifts() {
 
 loadShifts();
 setInterval(loadShifts, 60000);
+
+// ==========================
+// SERVICE WORKER (ADD THIS)
+// ==========================
+
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("./sw.js");
+}
